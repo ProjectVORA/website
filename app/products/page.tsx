@@ -5,56 +5,34 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 
 // ==================== API Configuration ====================
-const API_BASE_URL = 'https://berenice-hydrokinetic-tiera.ngrok-free.dev';
+const API_BASE_URL = 'https://f4ff-2401-4900-9021-b9c9-8400-380c-cf78-dc7d.ngrok-free.app';
 
 // Helper function for API calls using fetch with ngrok warning bypass
 const api = {
   get: async (url: string) => {
-    const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-    
-    try {
-      const response = await fetch(`${API_BASE_URL}${url}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'ngrok-skip-browser-warning': 'true', // Add this header to bypass ngrok warning
-          ...(token && { 'Authorization': `Bearer ${token}` })
-        }
-      });
-      
-      // Check if response is HTML (ngrok warning page)
-      const contentType = response.headers.get('content-type');
-      if (contentType && contentType.includes('text/html')) {
-        console.error('Received HTML response. This means the backend server might not be running.');
-        throw new Error('Backend server is not accessible. Please ensure the server is running and ngrok is configured correctly.');
-      }
-      
-      if (!response.ok) {
-        if (response.status === 401 && typeof window !== 'undefined') {
-          localStorage.removeItem('token');
-          window.location.href = '/login';
-        }
-        
-        // Try to parse error as JSON, if fails throw generic error
-        try {
-          const error = await response.json();
-          throw new Error(error.detail || error.message || `API request failed with status ${response.status}`);
-        } catch {
-          throw new Error(`API request failed with status ${response.status}`);
-        }
-      }
-      
-      return await response.json();
-    } catch (error) {
-      console.error('API GET Error:', error);
-      throw error;
+    const response = await fetch(`${API_BASE_URL}${url}`, {
+      headers: {
+        'ngrok-skip-browser-warning': 'true'
+      },
+      redirect: 'follow',
+    });
+
+    const contentType = response.headers.get('content-type');
+    if (contentType?.includes('text/html')) {
+      throw new Error('NGROK BROKE: Received HTML instead of JSON');
     }
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({}));
+      throw new Error(error.detail || error.message || `HTTP ${response.status}`);
+    }
+
+    return response.json();
   },
-  
+
   post: async (url: string, data?: any, options?: { params?: any }) => {
     const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
     
-    // Build URL with query params
     let fullUrl = `${API_BASE_URL}${url}`;
     if (options?.params) {
       const params = new URLSearchParams();
@@ -71,17 +49,16 @@ const api = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'ngrok-skip-browser-warning': 'true', // Add this header to bypass ngrok warning
-          ...(token && { 'Authorization': `Bearer ${token}` })
+          'ngrok-skip-browser-warning': 'true',
+          ...(token && { 'Authorization': `Bearer ${token}` }),
         },
-        body: data ? JSON.stringify(data) : undefined
+        body: data ? JSON.stringify(data) : undefined,
+        redirect: 'follow',
       });
       
-      // Check if response is HTML (ngrok warning page)
       const contentType = response.headers.get('content-type');
-      if (contentType && contentType.includes('text/html')) {
-        console.error('Received HTML response. This means the backend server might not be running.');
-        throw new Error('Backend server is not accessible. Please ensure the server is running and ngrok is configured correctly.');
+      if (contentType?.includes('text/html')) {
+        throw new Error('Backend server is not accessible.');
       }
       
       if (!response.ok) {
@@ -89,14 +66,8 @@ const api = {
           localStorage.removeItem('token');
           window.location.href = '/login';
         }
-        
-        // Try to parse error as JSON, if fails throw generic error
-        try {
-          const error = await response.json();
-          throw new Error(error.detail || error.message || `API request failed with status ${response.status}`);
-        } catch {
-          throw new Error(`API request failed with status ${response.status}`);
-        }
+        const error = await response.json().catch(() => ({}));
+        throw new Error(error.detail || error.message || `HTTP ${response.status}`);
       }
       
       return await response.json();
@@ -106,7 +77,6 @@ const api = {
     }
   }
 };
-
 // ==================== Type Definitions ====================
 interface IconProps {
   className?: string;
@@ -302,7 +272,7 @@ export default function ProductsPage() {
   const fetchCategories = async () => {
     try {
       console.log('Fetching categories...');
-      const response = await api.get('/inventory/categories/');
+      const response = await api.get('/inventory/categories');
       console.log('Categories response:', response);
       const categoriesData = Array.isArray(response) ? response : [];
       setCategories(categoriesData);
