@@ -3,11 +3,12 @@
 import Link from 'next/link';
 import { Phone, Play, ArrowRight, Star, ChevronDown, Send, ChevronLeft, ChevronRight, Shield, Zap, Headphones, CheckCircle } from 'lucide-react';
 import { useState, useEffect, useCallback } from 'react';
-
+import Image from 'next/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ServiceCard from '@/components/ServiceCard';
 import BlogCard from '@/components/BlogCard';
+import Hyperspeed from '@/components/ui/hyper';
 
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -403,9 +404,8 @@ export default function Home() {
       </section>
 
       {/* NetPro Why Choose Us Section */}
-    <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50">
   <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-
     {/* Header */}
     <div className="text-center mb-16">
       <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -418,180 +418,308 @@ export default function Home() {
 
     {/* Bento Grid */}
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[260px]">
-
-      {/* Large Left Card */}
-      <div className="md:col-span-2 row-span-2 bg-white rounded-3xl p-10 shadow-sm flex flex-col justify-between">
-        <div>
-          <h3 className="text-3xl font-bold text-gray-900 mb-4">
-            Enterprise Security
-          </h3>
-          <p className="text-gray-600 text-lg">
-            Military-grade security solutions to protect your network infrastructure.
-          </p>
+      {/* Large Left Card - Enterprise Security with full background image */}
+      <div className="md:col-span-2 row-span-2 rounded-3xl p-10 shadow-sm flex flex-col justify-between relative overflow-hidden transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://res.cloudinary.com/djpfw1goz/image/upload/q_auto/f_auto/v1775302292/Secure_your_network_infrastructure_kgr5vu.png"
+            alt="Enterprise Security Background"
+            fill
+            className="object-cover"
+            priority
+          />
+          {/* Dark Overlay for text readability */}
+         
         </div>
-
-        <div className="text-6xl text-blue-600 opacity-20">
-          🔒
-        </div>
+        
+        {/* Content */}
+     
+        
+       
       </div>
 
-      {/* Small Top Right */}
-      <div className="bg-white rounded-3xl p-6 shadow-sm flex flex-col justify-between">
-        <div>
-          <h4 className="text-xl font-bold text-gray-900 mb-2">
-            High Performance
-          </h4>
-          <p className="text-gray-600 text-sm">
-            Lightning-fast networking equipment for optimal business productivity.
-          </p>
-        </div>
-        <div className="text-4xl text-blue-600 opacity-20 self-end">
-          ⚡
-        </div>
-      </div>
+      {/* Small Top Right - High Performance */}
+    <div className="rounded-3xl p-6 shadow-sm flex flex-col justify-between transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg relative overflow-hidden">
+  {/* Simple Hyperspeed Background */}
+  <div className="absolute inset-0 z-0">
+    <Hyperspeed />
+  </div>
+  
+ 
+  
+  <div className="relative z-10">
+    <h4 className="text-xl font-bold text-white mb-2">
+      High Performance
+    </h4>
+    <p className="text-blue-100 text-sm">
+      Lightning-fast networking equipment for optimal business productivity.
+    </p>
+  </div>
+  
+ 
+</div>
+      {/* Small Middle Right - 24/7 Support with full background image */}
+      <div className="rounded-3xl p-6 shadow-sm flex flex-col justify-between transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg relative overflow-hidden h-full min-h-[540px]">
+  {/* Background Image */}
+  <div className="absolute inset-0 z-0">
+    <Image
+      src="https://res.cloudinary.com/djpfw1goz/image/upload/q_auto/f_auto/v1775305646/Tech_support_made_simple_and_secure_u8sydh.png"
+      alt="24/7 Support Background"
+      fill
+      className="object-cover"
+    />
+    {/* Dark Overlay for text readability */}
+    <div className="absolute inset-0 bg-black/50" />
+  </div>
+  
+  {/* Content */}
+  <div className="relative z-10 flex flex-col justify-between h-full">
+    <div>
+      <h4 className="text-xl font-bold text-white mb-2">
+        24/7 Support
+      </h4>
+      <p className="text-gray-200 text-sm">
+        Round-the-clock expert technical assistance whenever you need it.
+      </p>
+    </div>
+    
+    {/* Optional: Add a small icon or element at the bottom if needed */}
+   
+  </div>
+</div>
 
-      {/* Small Middle Right */}
-      <div className="bg-white rounded-3xl p-6 shadow-sm flex flex-col justify-between">
-        <div>
-          <h4 className="text-xl font-bold text-gray-900 mb-2">
-            24/7 Support
-          </h4>
-          <p className="text-gray-600 text-sm">
-            Round-the-clock expert technical assistance whenever you need it.
-          </p>
-        </div>
-        <div className="text-4xl text-blue-600 opacity-20 self-end">
-          🕒
-        </div>
-      </div>
-
-      {/* Bottom Full Width Card */}
-      <div className="md:col-span-3 bg-white rounded-3xl p-8 shadow-sm flex items-center justify-between">
-        <div>
-          <h3 className="text-2xl font-bold text-gray-900">
-            Quality Assured
-          </h3>
-          <p className="text-gray-600 mt-2">
-            Certified products from the world's most trusted brands.
-          </p>
-        </div>
-
-        <div className="text-5xl text-blue-600 opacity-20">
-          ✅
-        </div>
-      </div>
-
+      {/* Bottom Full Width Card - Quality Assured with full background image */}
+      <div className="md:col-span-2 bg-black rounded-3xl p-8 shadow-sm flex items-center justify-between transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg relative overflow-hidden">
+  {/* Content - Left side */}
+  <div className="relative z-10">
+    <h3 className="text-2xl font-bold text-white">
+      Quality Assured
+    </h3>
+    <p className="text-gray-300 mt-2">
+      Certified products from the world's most trusted brands.
+    </p>
+  </div>
+  
+  {/* Image - Right side (like an icon, centered vertically) */}
+  <div className="relative w-72 h-72 flex-shrink-0">
+    <Image
+      src="https://res.cloudinary.com/djpfw1goz/image/upload/q_auto/f_auto/v1775303854/S%C3%ADmbolo_de_confian%C3%A7a__o_design_3D_que_transmite_qualidade_tgw1zh.jpg"
+      alt="Quality Assurance Symbol"
+      fill
+      sizes="96px"
+      className="object-contain"
+    />
+  </div>
+</div>
     </div>
   </div>
 </section>
 
 
 <section className="py-24 bg-gray-100">
-  <div className="max-w-full mx-auto px-6">
+  <div className="max-w-7xl mx-auto px-6">
 
     {/* Header */}
     <div className="text-center mb-16">
       <h2 className="text-5xl font-bold text-gray-900 mb-4">
-        Our Networking Solutions
+       Our Featured Products
       </h2>
       <p className="text-xl text-gray-600">
         Powerful. Secure. Enterprise Ready.
       </p>
     </div>
 
-    {/* Product Showcase Layout */}
-    <div className="relative bg-white rounded-3xl p-12 shadow-xl overflow-hidden">
+ {/* Showcase Image */}
+<div className="relative w-full h-[500px] md:h-[650px] lg:h-[750px] bg-white rounded-3xl shadow-xl overflow-hidden">
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-end">
+  {/* Main Image */}
+  <img
+    src="https://res.cloudinary.com/djpfw1goz/image/upload/q_auto/f_auto/v1775315458/ChatGPT_Image_Apr_4_2026_08_40_42_PM_jhflxr.png"
+    alt="Networking Devices"
+    className="w-full h-full object-cover"
+  />
 
-        {products.map((product) => (
-          <Link
-            key={product.id}
-            href={`/products/${product.slug}`}
-            className="group relative flex flex-col items-center"
-          >
+  {/* Overlay */}
+  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
 
-            {/* Product Image */}
-            <div className="relative w-full h-48 flex items-end justify-center">
-              <img
-                src={product.image}
-                alt={product.name}
-                className="max-h-44 object-contain transition-transform duration-500 group-hover:scale-110"
-              />
+  {/* 🔘 Networking Devices */}
 
-              {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center rounded-xl">
-                <span className="text-white font-semibold text-sm">
-                  Learn More →
-                </span>
-              </div>
-            </div>
+  <Link href="/products/servers">
+    <button className="absolute top-[45%] left-[20%] bg-lime-400 text-black px-4 py-2 rounded-lg text-sm hover:bg-lime-300 shadow-md">
+      Servers →
+    </button>
+  </Link>
 
-            {/* Product Name */}
-            <div className="mt-4 text-center">
-              <h3 className="font-semibold text-gray-900">
-                {product.name}
-              </h3>
-              <p className="text-sm text-gray-500 mt-1">
-                Starting at {product.price}
-              </p>
-            </div>
+  <Link href="/products/cameras">
+    <button className="absolute top-[72%] left-[25%] bg-lime-400 text-black px-4 py-2 rounded-lg text-sm hover:bg-lime-300 shadow-md">
+      Camera →
+    </button>
+  </Link>
 
-          </Link>
-        ))}
+  <Link href="/products/gateway">
+    <button className="absolute top-[72%] left-[45%] bg-lime-400 text-black px-4 py-2 rounded-lg text-sm hover:bg-lime-300 shadow-md">
+      Gateway →
+    </button>
+  </Link>
 
-      </div>
-    </div>
+  <Link href="/products/router">
+    <button className="absolute top-[75%] right-[10%] bg-lime-400 text-black px-4 py-2 rounded-lg text-sm hover:bg-lime-300 shadow-md">
+      Router →
+    </button>
+  </Link>
+
+  <Link href="/products/ip-phone">
+    <button className="absolute top-[65%] right-[25%] bg-lime-400 text-black px-4 py-2 rounded-lg text-sm hover:bg-lime-300 shadow-md">
+      IP Phone →
+    </button>
+  </Link>
+
+  <Link href="/products/switch">
+    <button className="absolute top-[70%] left-[10%] bg-lime-400 text-black px-4 py-2 rounded-lg text-sm hover:bg-lime-300 shadow-md">
+      Switch →
+    </button>
+  </Link>
+
+  <Link href="/products/smart-lock">
+    <button className="absolute top-[60%] right-[40%] bg-lime-400 text-black px-4 py-2 rounded-lg text-sm hover:bg-lime-300 shadow-md">
+      Smart Lock →
+    </button>
+  </Link>
+
+  {/* 🖥️ Displays / Systems (NEW) */}
+
+  {/* Center Laptop */}
+  <Link href="/products/laptops">
+    <button className="absolute top-[20%] left-[45%] bg-blue-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-400 shadow-md">
+      Laptop →
+    </button>
+  </Link>
+
+  {/* Right Laptop / Monitor */}
+  <Link href="/products/desktops">
+    <button className="absolute top-[30%] right-[20%] bg-blue-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-400 shadow-md">
+      Desktop →
+    </button>
+  </Link>
+
+  {/* TV / Large Display */}
+  <Link href="/products/displays">
+    <button className="absolute top-[50%] right-[5%] bg-blue-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-400 shadow-md">
+      Display →
+    </button>
+  </Link>
+
+</div>
+
+
   </div>
 </section>
 
       {/* Professional Services Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Professional Services</h2>
-            <p className="text-xl text-gray-600">Expert installation and support for your networking needs</p>
-          </div>
+      <section className="py-20 bg-gray-100">
+         <div className="text-center mb-16">
+      <h2 className="text-5xl font-bold text-gray-900 mb-4">
+       Our Professional Services
+      </h2>
+      <p className="text-xl text-gray-600">
+        Powerful. Secure. Enterprise Ready.
+      </p>
+    </div>
+  <div className="max-w-9xl mx-auto px-6 space-y-20">
 
-          <div className="grid lg:grid-cols-3 gap-8">
-            {professionalServices.map((service, index) => (
-              <div key={index} className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100">
-                <div className="h-48 overflow-hidden">
-                  <img 
-                    src={service.image} 
-                    alt={service.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
-                  <p className="text-gray-600 mb-4">{service.description}</p>
-                  <ul className="space-y-2 mb-6">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-gray-600">
-                        <span className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-2"></span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link href="#" className="text-blue-600 font-semibold hover:text-blue-700 transition-colors inline-flex items-center">
-                    Learn More <ArrowRight className="w-4 h-4 ml-1" />
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
+    {/* 🔵 ROW 1 (Small Left + Big Right) */}
+    <div className="grid md:grid-cols-2 gap-10 items-center">
 
-          <div className="text-center mt-8">
-            <Link href="#" className="text-blue-600 font-semibold hover:text-blue-700 transition-colors inline-flex items-center">
-              View All Services <ArrowRight className="w-4 h-4 ml-1" />
-            </Link>
-          </div>
+      {/* Left */}
+      <div className="flex gap-8 items-center">
+        <img
+          src="https://i.pinimg.com/1200x/9c/1d/f6/9c1df634217a4503326b87d466a724cf.jpg"
+          className="w-72 h-[300px] object-cover rounded-xl"
+        />
+        <div>
+          <h3 className="font-bold text-xl mb-3">
+            Internet Service Provider
+          </h3>
+          <p className="text-gray-600 mb-4">
+            High-speed fiber optic and broadband internet connectivity for homes and businesses with reliable 24/7 support.
+          </p>
+          <button className="border px-5 py-2 rounded-full text-sm hover:bg-black hover:text-white transition">
+            Learn more
+          </button>
         </div>
-      </section>
+      </div>
+
+      {/* Right */}
+      <img
+        src="https://i.pinimg.com/736x/a6/8e/d1/a68ed190126bb3278373d5042379ed21.jpg"
+        className="w-full h-[300px] object-cover rounded-2xl"
+      />
+    </div>
+
+    {/* 🔵 ROW 2 (Big Left + Small Right) */}
+    <div className="grid md:grid-cols-2 gap-10 items-center">
+
+      {/* Left */}
+      <img
+        src="https://i.pinimg.com/1200x/00/1e/ef/001eeff23d5e3d5b2bf6369910b55cff.jpg"
+        className="w-full h-[300px] object-cover rounded-2xl"
+      />
+
+      {/* Right */}
+      <div className="flex gap-8 items-center">
+        <div>
+          <h3 className="font-bold text-xl mb-3">
+            Onsite Camera Installation
+          </h3>
+          <p className="text-gray-600 mb-4">
+            Professional CCTV camera installation services with optimal placement, configuration, and testing.
+          </p>
+          <button className="border px-5 py-2 rounded-full text-sm hover:bg-black hover:text-white transition">
+            Learn more
+          </button>
+        </div>
+        <img
+          src="https://i.pinimg.com/1200x/f0/95/e8/f095e8176f8675ad33a03fcb479701e6.jpg"
+          className="w-72 h-[300px] object-cover rounded-xl"
+        />
+      </div>
+    </div>
+
+    {/* 🔵 ROW 3 (Small Left + Big Right again) */}
+    <div className="grid md:grid-cols-2 gap-10 items-center">
+
+      {/* Left */}
+      <div className="flex gap-8 items-center">
+        <img
+          src="https://i.pinimg.com/1200x/ee/37/95/ee37957054480d3a5f5909afe4e317ac.jpg"
+          className="w-72 h-[300px] object-cover rounded-xl"
+        />
+        <div>
+          <h3 className="font-bold text-xl mb-3">
+            Onsite Server Installation
+          </h3>
+          <p className="text-gray-600 mb-4">
+            Expert server installation and configuration services ensuring optimal performance and security.
+          </p>
+          <button className="border px-5 py-2 rounded-full text-sm hover:bg-black hover:text-white transition">
+            Learn more
+          </button>
+        </div>
+      </div>
+
+      {/* Right */}
+      <img
+        src="https://i.pinimg.com/1200x/18/be/e0/18bee0179447943c31e0a79fe6f6283e.jpg"
+        className="w-full h-[300px] object-cover rounded-2xl"
+      />
+    </div>
+
+  </div>
+</section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-white">
+      {/* <section className="py-20 bg-white">
         <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
@@ -618,7 +746,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
       <section className="bg-blue-600 py-20">
@@ -776,7 +904,7 @@ export default function Home() {
       
 
       {/* About Section */}
-      <section className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      {/* <section className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="relative">
             <img
@@ -802,7 +930,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Strategic IT Support Section */}
       <section className="bg-gray-50 py-20">
@@ -861,49 +989,107 @@ export default function Home() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="relative">
-            <img
-              src="https://images.pexels.com/photos/5483077/pexels-photo-5483077.jpeg?auto=compress&cs=tinysrgb&w=800"
-              alt="Contact"
-              className="rounded-lg w-full h-auto"
-            />
-          </div>
-          <div className="bg-white p-8 rounded-lg">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Fill the contact form</h3>
-            <form className="space-y-4">
-              <input
-                type="text"
-                placeholder="Full name"
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2D5BFF] focus:border-transparent"
-              />
-              <input
-                type="email"
-                placeholder="Email address"
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2D5BFF] focus:border-transparent"
-              />
-              <input
-                type="tel"
-                placeholder="Phone number"
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2D5BFF] focus:border-transparent"
-              />
-              <textarea
-                placeholder="Type your message here"
-                rows={4}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2D5BFF] focus:border-transparent resize-none"
-              />
-              <button
-                type="submit"
-                className="bg-[#2D5BFF] hover:bg-[#2348CC] text-white font-semibold px-8 py-3 rounded-lg transition-colors"
-              >
-                Book A Call
-              </button>
-            </form>
+      <section className="bg-[#b8a999] py-20">
+  <div className="max-w-6xl mx-auto bg-white rounded-3xl p-10 shadow-md">
+
+    <div className="grid lg:grid-cols-2 gap-12 items-start">
+
+      {/* 🔵 LEFT SIDE */}
+      <div>
+        <h2 className="text-3xl font-semibold text-gray-900 mb-4">
+          Connect with Us for <br />
+          <span className="italic font-medium">Your Next Project</span>
+        </h2>
+
+        <p className="text-gray-600 mb-6 text-sm leading-relaxed">
+          You can contact us through the form below, or give us a call
+          during our office hours, Monday to Friday, from 9:00 AM to 7:00 PM.
+          Let’s work together to bring your ideas to life!
+        </p>
+
+        {/* Image Card */}
+        <div className="relative rounded-2xl overflow-hidden">
+          <img
+            src="https://images.pexels.com/photos/5483077/pexels-photo-5483077.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="Project"
+            className="w-full h-[300px] object-cover"
+          />
+
+          {/* Overlay Text */}
+          <div className="absolute inset-0 bg-black/20 flex flex-col justify-end p-6 text-white">
+            <h3 className="text-xl font-semibold">
+              Essential Aspects <br />
+              <span className="italic font-light">Driving Our Success</span>
+            </h3>
+            <p className="text-sm mt-2">
+              Our success is driven by innovation, operational excellence,
+              and a strong commitment to our client
+            </p>
           </div>
         </div>
-      </section>
+      </div>
 
+      {/* 🟢 RIGHT SIDE (FORM) */}
+      <div className="bg-gray-100 p-6 rounded-3xl">
+
+        <form className="space-y-4">
+
+          {/* Name Row */}
+          <div className="grid grid-cols-2 gap-4">
+            <input
+              type="text"
+              placeholder="First name"
+              className="w-full px-4 py-3 border border-gray-200 rounded-2xl bg-white"
+            />
+            <input
+              type="text"
+              placeholder="Last name"
+              className="w-full px-4 py-3 border border-gray-200 rounded-2xl bg-white"
+            />
+          </div>
+
+          {/* Phone */}
+          <input
+            type="tel"
+            placeholder="Phone"
+            className="w-full px-4 py-3 border border-gray-200 rounded-2xl bg-white"
+          />
+
+          {/* Email */}
+          <input
+            type="email"
+            placeholder="Email"
+            className="w-full px-4 py-3 border border-gray-200 rounded-2xl bg-white"
+          />
+
+          {/* Consultation */}
+          <input
+            type="text"
+            placeholder="Consultation"
+            className="w-full px-4 py-3 border border-gray-200 rounded-2xl bg-white"
+          />
+
+          {/* Message */}
+          <textarea
+            placeholder="Project Information"
+            rows={4}
+            className="w-full px-4 py-3 border border-gray-200 rounded-2xl bg-white resize-none"
+          />
+
+          {/* Button */}
+          <button
+            type="submit"
+            className="w-full bg-[#0f1f1a] text-white py-3 rounded-full hover:opacity-90 transition"
+          >
+            Submit
+          </button>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
       {/* FAQ Section */}
       <section className="bg-gray-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
