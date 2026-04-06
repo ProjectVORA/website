@@ -9,6 +9,7 @@ import Footer from '@/components/Footer';
 import ServiceCard from '@/components/ServiceCard';
 import BlogCard from '@/components/BlogCard';
 import Hyperspeed from '@/components/ui/hyper';
+import Contact from '@/components/Contact';
 
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -518,7 +519,7 @@ export default function Home() {
 
 
 <section className="py-24 bg-gray-100">
-  <div className="max-w-7xl mx-auto px-6">
+  <div className="max-w-9xl mx-auto px-6">
 
     {/* Header */}
     <div className="text-center mb-16">
@@ -989,107 +990,10 @@ export default function Home() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="bg-[#b8a999] py-20">
-  <div className="max-w-6xl mx-auto bg-white rounded-3xl p-10 shadow-md">
+     
+ 
+  <Contact/>
 
-    <div className="grid lg:grid-cols-2 gap-12 items-start">
-
-      {/* 🔵 LEFT SIDE */}
-      <div>
-        <h2 className="text-3xl font-semibold text-gray-900 mb-4">
-          Connect with Us for <br />
-          <span className="italic font-medium">Your Next Project</span>
-        </h2>
-
-        <p className="text-gray-600 mb-6 text-sm leading-relaxed">
-          You can contact us through the form below, or give us a call
-          during our office hours, Monday to Friday, from 9:00 AM to 7:00 PM.
-          Let’s work together to bring your ideas to life!
-        </p>
-
-        {/* Image Card */}
-        <div className="relative rounded-2xl overflow-hidden">
-          <img
-            src="https://images.pexels.com/photos/5483077/pexels-photo-5483077.jpeg?auto=compress&cs=tinysrgb&w=800"
-            alt="Project"
-            className="w-full h-[300px] object-cover"
-          />
-
-          {/* Overlay Text */}
-          <div className="absolute inset-0 bg-black/20 flex flex-col justify-end p-6 text-white">
-            <h3 className="text-xl font-semibold">
-              Essential Aspects <br />
-              <span className="italic font-light">Driving Our Success</span>
-            </h3>
-            <p className="text-sm mt-2">
-              Our success is driven by innovation, operational excellence,
-              and a strong commitment to our client
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* 🟢 RIGHT SIDE (FORM) */}
-      <div className="bg-gray-100 p-6 rounded-3xl">
-
-        <form className="space-y-4">
-
-          {/* Name Row */}
-          <div className="grid grid-cols-2 gap-4">
-            <input
-              type="text"
-              placeholder="First name"
-              className="w-full px-4 py-3 border border-gray-200 rounded-2xl bg-white"
-            />
-            <input
-              type="text"
-              placeholder="Last name"
-              className="w-full px-4 py-3 border border-gray-200 rounded-2xl bg-white"
-            />
-          </div>
-
-          {/* Phone */}
-          <input
-            type="tel"
-            placeholder="Phone"
-            className="w-full px-4 py-3 border border-gray-200 rounded-2xl bg-white"
-          />
-
-          {/* Email */}
-          <input
-            type="email"
-            placeholder="Email"
-            className="w-full px-4 py-3 border border-gray-200 rounded-2xl bg-white"
-          />
-
-          {/* Consultation */}
-          <input
-            type="text"
-            placeholder="Consultation"
-            className="w-full px-4 py-3 border border-gray-200 rounded-2xl bg-white"
-          />
-
-          {/* Message */}
-          <textarea
-            placeholder="Project Information"
-            rows={4}
-            className="w-full px-4 py-3 border border-gray-200 rounded-2xl bg-white resize-none"
-          />
-
-          {/* Button */}
-          <button
-            type="submit"
-            className="w-full bg-[#0f1f1a] text-white py-3 rounded-full hover:opacity-90 transition"
-          >
-            Submit
-          </button>
-
-        </form>
-      </div>
-
-    </div>
-  </div>
-</section>
       {/* FAQ Section */}
       <section className="bg-gray-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
