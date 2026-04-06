@@ -3,8 +3,9 @@
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Contactsection from '@/components/Contact';
 import Link from 'next/link';
-import { ArrowRight, Shield, Home, School, Building2, Hotel, Key, Users, Car, Heart, Building, Truck } from 'lucide-react';
+import { ArrowRight, Shield, Home, School, Building2, Hotel, Key, Users, Car, Heart, Building, Truck, Contact } from 'lucide-react';
 
 export default function SolutionsPage() {
   const solutions = [
@@ -149,138 +150,106 @@ export default function SolutionsPage() {
       </section>
 
       {/* Compact Solutions Section - WITH HOVER INTERACTIONS */}
-      <section className="pb-16 md:pb-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-4">
-            {solutions.map((solution, index) => {
-              const colors = getColorClasses(solution.color);
-              
-              return (
-                <div 
-                  key={index} 
-                  className={`
-                    bg-white rounded-xl border ${colors.border} shadow-sm 
-                    hover:shadow-lg transition-all duration-300 ease-out overflow-hidden
-                    hover:scale-[1.02] hover:bg-blue-50 active:scale-100
-                    group cursor-pointer
-                  `}
-                >
-                  {/* Mobile Layout */}
-                  <div className="lg:hidden">
-                    {/* Image - Fixed height */}
-                    <div className="relative h-48 w-full overflow-hidden">
-                      <img
-                        src={solution.image}
-                        alt={solution.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      {/* Accent Icon Block */}
-                      <div className="absolute -bottom-4 left-6">
-                        <div className={`
-                          ${colors.bg} border ${colors.border} rounded-lg p-2 shadow-sm
-                          group-hover:bg-blue-100 group-hover:border-blue-300 transition-colors duration-300
-                        `}>
-                          <div className={`${colors.text} group-hover:text-blue-700 transition-colors duration-300`}>
-                            {solution.icon}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Content */}
-                    <div className="p-5 pt-8">
-                      <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-800 transition-colors duration-300">
-                        {solution.title}
-                      </h3>
-                      <p className="text-gray-600 text-sm mb-4 leading-relaxed">
-                        {solution.description}
-                      </p>
-                      <Link
-                        href={`/solutions/${solution.title.toLowerCase().replace(/\s+&\s+/g, '-').replace(/\s+/g, '-')}`}
-                        className={`
-                          text-sm font-medium ${colors.text} 
-                          group-hover:text-blue-700 group-hover:font-semibold
-                          inline-flex items-center transition-all duration-300
-                        `}
-                      >
-                        Learn More
-                        <ArrowRight className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform duration-300" />
-                      </Link>
-                    </div>
-                  </div>
+     <section className="py-24 bg-gray-100">
+  <div className="max-w-9xl mx-auto px-6">
 
-                  {/* Desktop Layout */}
-                  <div className="hidden lg:flex items-center">
-                    {/* Image Container - Fixed width and height */}
-                    <div className="relative w-48 h-40 flex-shrink-0 overflow-hidden">
-                      <img
-                        src={solution.image}
-                        alt={solution.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      {/* Accent Icon Block */}
-                      <div className="absolute -right-3 top-1/2 transform -translate-y-1/2 z-10">
-                        <div className={`
-                          ${colors.bg} border ${colors.border} rounded-lg p-2 shadow-sm
-                          group-hover:bg-blue-100 group-hover:border-blue-300 transition-colors duration-300
-                        `}>
-                          <div className={`${colors.text} group-hover:text-blue-700 transition-colors duration-300`}>
-                            {solution.icon}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Content Container */}
-                    <div className="flex-1 p-6">
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1 pr-4">
-                          <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-800 transition-colors duration-300">
-                            {solution.title}
-                          </h3>
-                          <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
-                            {solution.description}
-                          </p>
-                        </div>
-                        <div className="flex-shrink-0">
-                          <Link
-                            href={`/solutions/${solution.title.toLowerCase().replace(/\s+&\s+/g, '-').replace(/\s+/g, '-')}`}
-                            className={`
-                              text-sm font-medium ${colors.text}
-                              group-hover:text-blue-700 group-hover:font-semibold
-                              inline-flex items-center whitespace-nowrap transition-all duration-300
-                            `}
-                          >
-                            Learn More
-                            <ArrowRight className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform duration-300" />
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+    {/* Header */}
+    <div className="text-center mb-16">
+      <h2 className="text-5xl font-bold text-gray-900 mb-4">
+        Explore Our Solutions
+      </h2>
+      <p className="text-xl text-gray-600">
+        Smart Security Across Every Industry
+      </p>
+    </div>
 
-          {/* Section Footer - Minimal */}
-          <div className="mt-12 pt-8 border-t border-gray-200">
-            <div className="text-center">
-              <p className="text-gray-600 mb-6">
-                Can't find what you're looking for? Contact us for custom solutions.
-              </p>
-              <Link
-                href="/contact"
-                className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200"
-              >
-                Contact Sales Team
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+    {/* Image Map */}
+    <div className="relative w-full h-[600px] md:h-[750px] lg:h-[900px] bg-white rounded-3xl shadow-xl overflow-hidden">
 
+      {/* MAIN IMAGE (Your uploaded city image) */}
+      <img
+        src="https://res.cloudinary.com/djpfw1goz/image/upload/q_auto/f_auto/v1775376967/download_18_l5lebq.jpg"
+        alt="Solutions Map"
+        className="w-full h-full object-cover"
+      />
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+
+      {/* 🏦 Banking */}
+      <Link href="/solutions/banking">
+        <button className="absolute top-[8%] left-[7%] bg-blue-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-400 shadow-md">
+          Banking →
+        </button>
+      </Link>
+
+      {/* 🏠 Residential */}
+      <Link href="/solutions/residential">
+        <button className="absolute top-[85%] left-[10%] bg-green-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-400 shadow-md">
+          Residential →
+        </button>
+      </Link>
+
+      {/* 🎓 Education */}
+      <Link href="/solutions/education">
+        <button className="absolute top-[30%] left-[15%] bg-purple-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-purple-400 shadow-md">
+          Education →
+        </button>
+      </Link>
+
+      {/* 🏢 Corporate */}
+      <Link href="/solutions/corporate">
+        <button className="absolute top-[15%] left-[47%] bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-indigo-400 shadow-md">
+          Corporate →
+        </button>
+      </Link>
+
+      {/* 🏨 Hospitality */}
+      <Link href="/solutions/hospitality">
+        <button className="absolute top-[45%] right-[7%] bg-amber-500 text-black px-4 py-2 rounded-lg text-sm hover:bg-amber-400 shadow-md">
+          Hospitality →
+        </button>
+      </Link>
+
+      {/* 🏗️ Real Estate */}
+      <Link href="/solutions/real-estate">
+        <button className="absolute top-[85%] right-[10%] bg-cyan-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-cyan-400 shadow-md">
+          Real Estate →
+        </button>
+      </Link>
+
+      {/* ❤️ Healthcare */}
+      <Link href="/solutions/healthcare-sector">
+        <button className="absolute top-[50%] left-[10%] bg-teal-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-teal-400 shadow-md">
+          Healthcare →
+        </button>
+      </Link>
+
+      {/* 🏪 Businesses */}
+      <Link href="/solutions/small-large-businesses">
+        <button className="absolute top-[70%] left-[45%] bg-red-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-400 shadow-md">
+          Businesses →
+        </button>
+      </Link>
+
+      {/* 🚓 Public Safety */}
+      <Link href="/solutions/public-safety">
+        <button className="absolute top-[40%] left-[70%] bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-500 shadow-md">
+          Public Safety →
+        </button>
+      </Link>
+
+      {/* 🚚 Transport */}
+      <Link href="/solutions/transport">
+        <button className="absolute top-[45%] right-[45%] bg-green-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-500 shadow-md">
+          Transport →
+        </button>
+      </Link>
+
+    </div>
+  </div>
+</section>
+       <Contactsection />
       <Footer />
     </div>
   );
