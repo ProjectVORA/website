@@ -786,19 +786,8 @@ const Header = () => { // ⭐ CHANGED: Renamed from Navbar to Header
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
             <Link href="/" className="flex items-center space-x-2" aria-label="Home" onClick={handleCloseAll}>
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-lg flex items-center justify-center">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="white"
-                  className="text-white"
-                  aria-hidden="true"
-                >
-                  <path d="M12 2L2 7l10 5 10-5M2 12l10 5 10-5M2 7v5l10 5M2 7l10 5M2 12v5l10-5m10 5l-10-5M12 2v20l10-5M12 2v20l-10-5" />
-                </svg>
-              </div>
-              <span className="font-bold text-xl text-gray-900">TechSolutions</span>
+            
+              <span className="font-bold text-xl text-gray-900">VORAA</span>
             </Link>
           </div>
 

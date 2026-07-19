@@ -7,7 +7,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 // ==================== API Configuration (Copy from your products page) ====================
-const API_BASE_URL = 'https://aba3-2401-4900-902c-1216-55a3-6146-4bd0-302f.ngrok-free.app';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const api = {
   get: async (url: string) => {
@@ -85,14 +85,14 @@ const getStatusColor = (status: string) => {
   switch (status?.toLowerCase()) {
     case 'active':
     case 'in stock':
-      return 'bg-green-100 text-green-800';
+      return 'bg-[#00E0B8]/10 text-[#00E0B8]';
     case 'inactive':
     case 'out of stock':
       return 'bg-red-100 text-red-800';
     case 'coming soon':
       return 'bg-yellow-100 text-yellow-800';
     default:
-      return 'bg-gray-100 text-gray-800';
+      return 'bg-white/10 text-white/60';
   }
 };
 
@@ -159,12 +159,12 @@ export default function ProductDetailPage() {
   // Loading State
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#050505]">
         <Header />
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-600 border-t-transparent"></div>
-            <p className="mt-4 text-gray-600">Loading product details...</p>
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-[#00E0B8] border-t-transparent"></div>
+            <p className="mt-4 text-white/60">Loading product details...</p>
           </div>
         </div>
         <Footer />
@@ -175,16 +175,16 @@ export default function ProductDetailPage() {
   // Error State
   if (error || !product) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#050505]">
         <Header />
         <div className="flex items-center justify-center min-h-[60vh] px-4">
           <div className="text-center max-w-md">
             <div className="text-red-500 text-6xl mb-4">⚠️</div>
-            <h1 className="text-2xl font-bold text-gray-800 mb-2">Product Not Found</h1>
-            <p className="text-gray-600 mb-6">{error || 'The product you are looking for does not exist.'}</p>
+            <h1 className="text-2xl font-bold text-white/80 mb-2">Product Not Found</h1>
+            <p className="text-white/60 mb-6">{error || 'The product you are looking for does not exist.'}</p>
             <Link 
               href="/products"
-              className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+              className="inline-block bg-[#00E0B8] text-black px-6 py-3 rounded-lg hover:bg-[#009B7D] transition-colors"
             >
               Back to Products
             </Link>
@@ -200,11 +200,11 @@ export default function ProductDetailPage() {
   const hasImages = images.length > 0;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#050505]">
       <Header />
 
       {/* Hero Section with Breadcrumb */}
-      <section className="relative bg-gray-900 text-white py-12">
+      <section className="relative bg-[#050505] text-white py-12">
         <div className="absolute inset-0 overflow-hidden">
           {selectedImage && (
             <img
@@ -213,11 +213,11 @@ export default function ProductDetailPage() {
               className="w-full h-full object-cover opacity-20"
             />
           )}
-          <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-gray-900/80" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#050505] to-[#050505]/80" />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <nav className="flex items-center text-sm text-gray-300 mb-4">
+          <nav className="flex items-center text-sm text-white/30 mb-4">
             <Link href="/" className="hover:text-white transition">Home</Link>
             <span className="mx-2">/</span>
             <Link href="/products" className="hover:text-white transition">Products</Link>
@@ -227,7 +227,7 @@ export default function ProductDetailPage() {
           
           <h1 className="text-3xl md:text-4xl font-bold">{product.name}</h1>
           {product.model_number && (
-            <p className="text-gray-300 mt-2">Model: {product.model_number}</p>
+            <p className="text-white/30 mt-2">Model: {product.model_number}</p>
           )}
         </div>
       </section>
@@ -242,7 +242,7 @@ export default function ProductDetailPage() {
             {/* LEFT: Product Images */}
             <div>
               {/* Main Image */}
-              <div className="bg-white rounded-2xl shadow-lg overflow-hidden mb-4">
+              <div className="bg-[#101816] rounded-2xl shadow-lg overflow-hidden mb-4">
                 <div className="relative h-[400px]">
                   {selectedImage ? (
                     <img
@@ -251,8 +251,8 @@ export default function ProductDetailPage() {
                       className="w-full h-full object-contain p-6"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-gray-100">
-                      <svg className="w-32 h-32 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#0B0F0E] to-[#101816]">
+                      <svg className="w-32 h-32 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
                     </div>
@@ -269,8 +269,8 @@ export default function ProductDetailPage() {
                       onClick={() => setSelectedImage(image.url)}
                       className={`relative h-20 rounded-lg overflow-hidden border-2 transition-all ${
                         selectedImage === image.url 
-                          ? 'border-blue-600 shadow-md' 
-                          : 'border-gray-200 hover:border-gray-400'
+                          ? 'border-[#00E0B8] shadow-md' 
+                          : 'border-white/10 hover:border-white/30'
                       }`}
                     >
                       <img
@@ -285,13 +285,13 @@ export default function ProductDetailPage() {
             </div>
 
             {/* RIGHT: Product Info & Actions */}
-            <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+            <div className="bg-[#101816] rounded-2xl shadow-lg p-6 md:p-8">
               {/* Category & Subcategory */}
               <div className="flex flex-wrap gap-2 mb-4">
                 {product.category && (
                   <Link 
                     href={`/products?category=${encodeURIComponent(product.category.name)}`}
-                    className="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full hover:bg-blue-200 transition"
+                    className="inline-flex items-center px-3 py-1 bg-[#00E0B8]/10 text-[#00E0B8] text-sm font-medium rounded-full hover:bg-[#00E0B8]/20 transition"
                   >
                     {product.category.name}
                   </Link>
@@ -299,7 +299,7 @@ export default function ProductDetailPage() {
                 {product.subcategory && (
                   <Link 
                     href={`/products?subcategory=${encodeURIComponent(product.subcategory.name)}`}
-                    className="inline-flex items-center px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full hover:bg-green-200 transition"
+                    className="inline-flex items-center px-3 py-1 bg-[#00E0B8]/10 text-[#00E0B8] text-sm font-medium rounded-full hover:bg-[#00E0B8]/20 transition"
                   >
                     {product.subcategory.name}
                   </Link>
@@ -314,17 +314,17 @@ export default function ProductDetailPage() {
               {/* Price */}
               {product.price > 0 && (
                 <div className="mb-6">
-                  <span className="text-3xl font-bold text-gray-900">
+                  <span className="text-3xl font-bold text-white">
                     ₹{product.price.toLocaleString('en-IN')}
                   </span>
-                  <span className="text-gray-500 ml-2">+ GST</span>
+                  <span className="text-white/40 ml-2">+ GST</span>
                 </div>
               )}
 
               {/* Short Description */}
               {product.short_description && (
                 <div className="mb-6">
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-white/60 leading-relaxed">
                     {product.short_description}
                   </p>
                 </div>
@@ -332,20 +332,20 @@ export default function ProductDetailPage() {
 
               {/* Quantity Selector */}
               <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-white/70 mb-2">
                   Quantity
                 </label>
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => handleQuantityChange(-1)}
-                    className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition"
+                    className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center hover:bg-white/5 transition"
                   >
                     -
                   </button>
                   <span className="text-lg font-semibold w-12 text-center">{quantity}</span>
                   <button
                     onClick={() => handleQuantityChange(1)}
-                    className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition"
+                    className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center hover:bg-white/5 transition"
                   >
                     +
                   </button>
@@ -356,13 +356,13 @@ export default function ProductDetailPage() {
               <div className="flex flex-col sm:flex-row gap-4 mb-6">
                 <button
                   onClick={handleGetQuote}
-                  className="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition shadow-md"
+                  className="flex-1 bg-[#00E0B8] text-black px-6 py-3 rounded-lg font-semibold hover:bg-[#009B7D] transition shadow-md"
                 >
                   Get Quote
                 </button>
                 <button
                   onClick={handleDownloadBrochure}
-                  className="flex-1 border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition"
+                  className="flex-1 border-2 border-[#00E0B8] text-[#00E0B8] px-6 py-3 rounded-lg font-semibold hover:bg-[#00E0B8]/10 transition"
                 >
                   Download Brochure
                 </button>
@@ -370,8 +370,8 @@ export default function ProductDetailPage() {
 
               {/* Product Links/Resources */}
               {product.links && product.links.length > 0 && (
-                <div className="border-t border-gray-200 pt-6">
-                  <h3 className="text-sm font-medium text-gray-900 mb-3">Resources</h3>
+                <div className="border-t border-white/10 pt-6">
+                  <h3 className="text-sm font-medium text-white mb-3">Resources</h3>
                   <div className="flex flex-wrap gap-3">
                     {product.links.map((link, idx) => (
                       <a
@@ -379,7 +379,7 @@ export default function ProductDetailPage() {
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-blue-600 hover:text-blue-800 text-sm flex items-center gap-1"
+                        className="text-[#00E0B8] hover:text-[#009B7D] text-sm flex items-center gap-1"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -395,9 +395,9 @@ export default function ProductDetailPage() {
 
           {/* Full Description */}
           {product.full_description && (
-            <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8 mb-8">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Description</h2>
-              <p className="text-gray-600 leading-relaxed whitespace-pre-line">
+            <div className="bg-[#101816] rounded-2xl shadow-lg p-6 md:p-8 mb-8">
+              <h2 className="text-xl font-bold text-white mb-4">Description</h2>
+              <p className="text-white/60 leading-relaxed whitespace-pre-line">
                 {product.full_description}
               </p>
             </div>
@@ -405,18 +405,18 @@ export default function ProductDetailPage() {
 
           {/* Specifications Section */}
           {product.specifications && product.specifications.length > 0 && (
-            <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8 mb-8">
-              <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-[#101816] rounded-2xl shadow-lg p-6 md:p-8 mb-8">
+              <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                <svg className="w-5 h-5 text-[#00E0B8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                 </svg>
                 Technical Specifications
               </h2>
               <div className="grid md:grid-cols-2 gap-4">
                 {product.specifications.map((spec, idx) => (
-                  <div key={idx} className="flex justify-between py-3 border-b border-gray-100">
-                    <span className="text-gray-600 capitalize">{spec.spec_name}:</span>
-                    <span className="font-medium text-gray-900">{spec.spec_value}</span>
+                  <div key={idx} className="flex justify-between py-3 border-b border-white/5">
+                    <span className="text-white/60 capitalize">{spec.spec_name}:</span>
+                    <span className="font-medium text-white">{spec.spec_value}</span>
                   </div>
                 ))}
               </div>
@@ -425,20 +425,20 @@ export default function ProductDetailPage() {
 
           {/* Features Section */}
           {product.features && product.features.length > 0 && (
-            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 md:p-8 mb-8">
-              <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-gradient-to-r from-[#1C3F38] to-[#0B0F0E] rounded-2xl p-6 md:p-8 mb-8">
+              <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                <svg className="w-5 h-5 text-[#00E0B8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
                 </svg>
                 Key Features
               </h2>
               <div className="grid md:grid-cols-2 gap-3">
                 {product.features.map((feature, idx) => (
-                  <div key={idx} className="flex items-start gap-3 bg-white rounded-lg p-3 shadow-sm">
-                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div key={idx} className="flex items-start gap-3 bg-[#101816] rounded-lg p-3 shadow-sm">
+                    <svg className="w-5 h-5 text-[#00E0B8] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-gray-700">{feature.feature_text}</span>
+                    <span className="text-white/70">{feature.feature_text}</span>
                   </div>
                 ))}
               </div>
@@ -449,7 +449,7 @@ export default function ProductDetailPage() {
           <div className="text-center">
             <Link 
               href="/products"
-              className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium transition"
+              className="inline-flex items-center gap-2 text-[#00E0B8] hover:text-[#009B7D] font-medium transition"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
