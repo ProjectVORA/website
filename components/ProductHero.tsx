@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import gsap from "gsap";
+import ParticleSwarm from "./ParticleSwarm";
 
 interface Product {
   id: number;
@@ -144,23 +145,7 @@ export default function ProductHero({ products }: Props) {
         </div>
       </div>
 
-      {/* Product Details */}
-      <motion.div
-        key={products[activeIndex].name}
-        initial={{ opacity: 0, y: 25 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="relative z-20 mt-10 text-center"
-      >
-        <h3 className="text-xl font-medium text-white">
-          {products[activeIndex].name}
-        </h3>
-
-        <p className="mx-auto mt-3 max-w-xl text-sm text-white/60">
-          {products[activeIndex].price}
-        </p>
-      </motion.div>
-
-      {/* Product Row */}
+     {/* <ParticleSwarm />   */}
    
     </section>
   );
