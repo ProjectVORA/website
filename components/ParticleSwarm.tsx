@@ -4,10 +4,16 @@ import { OrbitControls, Effects } from '@react-three/drei';
 import { UnrealBloomPass } from 'three-stdlib';
 import * as THREE from 'three';
 
-extend({ UnrealBloomPass });
+extend({ unrealBloomPass: UnrealBloomPass });
+
+declare module '@react-three/fiber' {
+  interface ThreeElements {
+    unrealBloomPass: any;
+  }
+}
 
 const ParticleSwarm = () => {
-  const meshRef = useRef();
+  const meshRef = useRef<THREE.InstancedMesh>(null);
   const count = 20000;
   const speedMult = 1;
   const dummy = useMemo(() => new THREE.Object3D(), []);
@@ -26,20 +32,17 @@ const ParticleSwarm = () => {
   const geometry = useMemo(() => new THREE.TetrahedronGeometry(0.25), []);
 
   const PARAMS = useMemo(() => ({"scale":90,"twist":2.5,"wave":6,"breathe":0.5}), []);
-  const addControl = (id, l, min, max, val) => {
+  type ParamKeys = keyof typeof PARAMS;
+  const addControl = (id: ParamKeys, _l: string, _min: number, _max: number, val: number) => {
       return PARAMS[id] !== undefined ? PARAMS[id] : val;
   };
-  const setInfo = () => {};
-  const annotate = () => {};
+  const setInfo = (_title: string, _desc: string) => {};
+  const annotate = (_name: string, _pos: THREE.Vector3, _label: string) => {};
 
   useFrame((state) => {
     if (!meshRef.current) return;
     const time = state.clock.getElapsedTime() * speedMult;
     const THREE_LIB = THREE;
-
-    if(material.uniforms && material.uniforms.uTime) {
-         material.uniforms.uTime.value = time;
-    }
 
     for (let i = 0; i < count; i++) {
         // USER CODE START

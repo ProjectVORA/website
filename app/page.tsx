@@ -350,7 +350,7 @@ useEffect(() => {
       <ProductHero products={products} />
       {/* Hero Section */}
 <section className="relative h-[1200px] overflow-hidden bg-black">
-  <ParticleSwarm />
+ 
 
   {/* Background Slides */}
   {slides.map((slide, index) => (

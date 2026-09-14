@@ -2,6 +2,8 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import Image, { StaticImageData } from "next/image";
+import cameraImage from "@/components/asset/camera.png";
 
 interface ServiceStats {
   value: string;
@@ -13,63 +15,77 @@ interface Service {
   title: string;
   subtitle: string;
   description: string;
-  image: string;
+  image: string | StaticImageData;
   stats: ServiceStats[];
   bgWord: string;
 }
 
 const services: Service[] = [
+  // ------------------------------------------------------------
+  // 1. ISP — Internet Service Provider
+  // ------------------------------------------------------------
   {
     label: "ISP",
     title: "Internet Solutions",
-    subtitle: "High-Speed Fiber Connectivity",
+    subtitle: "High-Speed Fiber & Broadband Connectivity",
     description:
-      "Enterprise-grade broadband and fiber solutions designed for reliability, speed and business continuity.",
-    image:
-      "https://res.cloudinary.com/djpfw1goz/image/upload/v1779537925/ChatGPT_Image_May_23_2026_05_34_55_PM_comxvw.png",
+      "Enterprise-grade fiber and broadband connectivity with SLA-backed uptime, static IP options, and dedicated bandwidth. We design, install, and monitor the link so your business stays online — with 24/7 proactive monitoring and rapid failover support.",
+    image: cameraImage,
     stats: [
-      { value: "99.99%", label: "Uptime" },
-      { value: "24/7", label: "Support" },
-      { value: "1Gbps+", label: "Speed" },
+      { value: "99.99%", label: "Uptime SLA" },
+      { value: "1Gbps+", label: "Fiber Speed" },
+      { value: "24/7", label: "Monitoring" },
     ],
     bgWord: "INTERNET",
   },
+
+  // ------------------------------------------------------------
+  // 2. CCTV — Surveillance Systems
+  // ------------------------------------------------------------
   {
     label: "CCTV",
     title: "CCTV Surveillance",
-    subtitle: "Intelligent Video Monitoring",
+    subtitle: "IP Camera & NVR/DVR Installation",
     description:
-      "AI-powered surveillance systems with remote monitoring and 24/7 recording capabilities.",
+      "End-to-end surveillance deployment — site survey, camera placement, NVR/DVR configuration, remote mobile viewing, and storage planning. We install 4K IP cameras with AI motion detection, night vision, and cloud backup for homes, offices, warehouses, and retail.",
     image:
       "https://res.cloudinary.com/djpfw1goz/image/upload/v1779902875/ChatGPT_Image_May_27_2026_10_57_42_PM_zalxou.png",
     stats: [
       { value: "4K", label: "Resolution" },
       { value: "24/7", label: "Recording" },
-      { value: "AI", label: "Detection" },
+      { value: "AI", label: "Motion Detect" },
     ],
     bgWord: "CCTV",
   },
+
+  // ------------------------------------------------------------
+  // 3. SERVERS — Server Installation & Management
+  // ------------------------------------------------------------
   {
     label: "SERVERS",
     title: "Server Infrastructure",
-    subtitle: "Enterprise Server Deployment",
+    subtitle: "Onsite Rack Installation & Management",
     description:
-      "Secure rack deployment, configuration and maintenance for modern organizations.",
+      "Complete server room deployment — rack mounting, cable management, Windows/Linux OS installation, Active Directory, RAID configuration, and automated backup. We also handle scheduled health checks, patch management, and emergency recovery to keep your servers running at peak performance.",
     image:
       "https://res.cloudinary.com/djpfw1goz/image/upload/v1779966895/ChatGPT_Image_May_28_2026_04_44_36_PM_oktii8.png",
     stats: [
       { value: "48TB", label: "Storage" },
+      { value: "RAID 0/1/5", label: "Support" },
       { value: "24/7", label: "Monitoring" },
-      { value: "RAID", label: "Support" },
     ],
     bgWord: "SERVERS",
   },
+
+  // ------------------------------------------------------------
+  // 4. ACCESS — Smart Access Control
+  // ------------------------------------------------------------
   {
     label: "ACCESS",
     title: "Smart Access Control",
-    subtitle: "Secure Access Management",
+    subtitle: "Biometric, RFID & Smart Lock Systems",
     description:
-      "Modern biometric, RFID and smart lock systems for complete facility protection.",
+      "Modern access management for offices, data centers, and facilities — biometric fingerprint, RFID card, and smart lock systems. We integrate with your existing network, configure user permissions, and connect to attendance or time-tracking software.",
     image:
       "https://res.cloudinary.com/djpfw1goz/image/upload/v1779902875/ChatGPT_Image_May_27_2026_10_57_42_PM_zalxou.png",
     stats: [
@@ -79,20 +95,62 @@ const services: Service[] = [
     ],
     bgWord: "ACCESS",
   },
+
+  // ------------------------------------------------------------
+  // 5. NETWORK — Full Network Engineering & Maintenance
+  // ------------------------------------------------------------
   {
     label: "NETWORK",
     title: "Networking Systems",
-    subtitle: "Scalable Network Infrastructure",
+    subtitle: "Design, Setup & Daily Maintenance",
     description:
-      "Routers, switches and gateways engineered for enterprise-grade connectivity.",
+      "Full lifecycle network engineering — router, switch, and firewall configuration; VLAN segmentation; VPN tunnels; structured cabling; and WiFi optimization. We also handle daily troubleshooting: slow internet, IP conflicts, DNS failures, printer sharing, and dropped connections.",
     image:
       "https://res.cloudinary.com/djpfw1goz/image/upload/v1779966895/ChatGPT_Image_May_28_2026_04_44_36_PM_oktii8.png",
     stats: [
-      { value: "10GbE", label: "Speed" },
-      { value: "99.99%", label: "Uptime" },
+      { value: "10GbE", label: "Backbone" },
       { value: "L3", label: "Switching" },
+      { value: "99.99%", label: "Uptime" },
     ],
     bgWord: "NETWORK",
+  },
+
+  // ------------------------------------------------------------
+  // 6. SECURITY — Cybersecurity & Firewall Management
+  // ------------------------------------------------------------
+  {
+    label: "SECURITY",
+    title: "Cybersecurity",
+    subtitle: "Firewall, Threat Detection & Protection",
+    description:
+      "Protect your network with enterprise firewalls, intrusion detection, endpoint security, and regular vulnerability assessments. We handle firewall rule management, malware removal, and proactive threat monitoring — all managed by our certified security team.",
+    image:
+      "https://res.cloudinary.com/djpfw1goz/image/upload/v1779902875/ChatGPT_Image_May_27_2026_10_57_42_PM_zalxou.png",
+    stats: [
+      { value: "24/7", label: "Threat Watch" },
+      { value: "0-Day", label: "Protection" },
+      { value: "100%", label: "Encrypted" },
+    ],
+    bgWord: "SECURITY",
+  },
+
+  // ------------------------------------------------------------
+  // 7. DATA — Data Recovery & Backup
+  // ------------------------------------------------------------
+  {
+    label: "DATA",
+    title: "Data Recovery & Backup",
+    subtitle: "Emergency Recovery & Automated Backup",
+    description:
+      "Emergency recovery from crashed hard drives, corrupted RAID arrays, and failed SSDs — with high success rates and complete confidentiality. We also deploy automated cloud and onsite backup systems so your business is never at risk again.",
+    image:
+      "https://res.cloudinary.com/djpfw1goz/image/upload/v1779966895/ChatGPT_Image_May_28_2026_04_44_36_PM_oktii8.png",
+    stats: [
+      { value: "98%", label: "Recovery Rate" },
+      { value: "RAID", label: "Expertise" },
+      { value: "Cloud", label: "Backup Ready" },
+    ],
+    bgWord: "DATA",
   },
 ];
 
@@ -124,12 +182,12 @@ export default function ServicesSection() {
 
       {/* Tab Strip */}
       <div className="relative z-10 mx-6 mt-6 rounded-2xl border border-white/10 bg-black/30 backdrop-blur-xl overflow-hidden">
-        <div className="flex">
+        <div className="flex overflow-x-auto">
           {services.map((s, i) => (
             <button
               key={s.label}
               onClick={() => setActiveIndex(i)}
-              className={`flex-1 py-5 text-sm font-medium transition-all duration-300 relative ${
+              className={`flex-1 min-w-[100px] py-5 text-sm font-medium transition-all duration-300 relative whitespace-nowrap ${
                 i === activeIndex
                   ? "text-[#00E0B8] bg-white/[0.03]"
                   : "text-white/50 hover:text-white/80"
@@ -203,8 +261,30 @@ export default function ServicesSection() {
 
         {/* Right Image */}
         <div className="relative h-[400px] lg:h-[550px] flex items-center justify-center">
-          <div className="absolute right-[-80px] bottom-[-40px] w-[120%] h-[120%]">
-            
+          <div className="relative w-full h-full">
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={
+                  typeof active.image === "string"
+                    ? active.image
+                    : active.image.src
+                }
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="relative w-full h-full"
+              >
+                <Image
+                  src={active.image}
+                  alt={active.title}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 700px"
+                  priority={activeIndex === 0}
+                />
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>
