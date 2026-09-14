@@ -15,6 +15,7 @@ import Hyperspeed from '@/components/ui/hyper';
 import Contact from '@/components/Contact';
 import BlurText from "@/components/ui/BlurText";
 import ProductHero from '@/components/ProductHero';
+import ParticleSwarm from '@/components/ParticleSwarm';
 
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -347,9 +348,10 @@ useEffect(() => {
       <Header />
 
       <ProductHero products={products} />
-
       {/* Hero Section */}
 <section className="relative h-[1200px] overflow-hidden bg-black">
+ 
+
   {/* Background Slides */}
   {slides.map((slide, index) => (
     <div
